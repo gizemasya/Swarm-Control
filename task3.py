@@ -17,9 +17,7 @@ r = rospy.Rate(FREQUENCY)
 uri1 = "radio://0/80/2M/E7E7E7E7E7"
 uri2 = "radio://0/80/2M/E7E7E7E7C1"
 
-# SANİYE 100, SWARM CONTROL YOK, MOVE HIZI 9
-
-zumo_list = []#[z.Zumo(2, True, 1/FREQUENCY)]
+zumo_list = [z.Zumo(2, True, 1/FREQUENCY)] # zumo = kara aracı
 drone_list = [d.Drone(1, link_uri=0, sim=False, pos_offset=[0,0]), d.Drone(2, link_uri=0, sim=False, pos_offset=[0, 0]), d.Drone(3, link_uri=0, sim=False, pos_offset=[0,0]), d.Drone(4, link_uri=0, sim=False, pos_offset=[0, 0]), d.Drone(5, link_uri=0, sim=False, pos_offset=[0, 0]), d.Drone(6, link_uri=0, sim=False, pos_offset=[0, 0])] # SİM FALSE YAP VE ÇOKLU DRONE EKLE. URİ LARI SİL
 
 plan = p.Plan(drone_list, zumo_list, 1/FREQUENCY)
@@ -39,7 +37,7 @@ d2 = lambda: plan.changeFormation(k_fp_list)
 d3 = lambda: avoid.pathAssigment()
 d4 = lambda: avoid.moveKarma(0.1,2)
 d5 = lambda: plan.formation.initFormation()
-#d6 = lambda: plan.wait(3000)
+d6 = lambda: plan.wait(3000)
 d6 = lambda: plan.land(0.5)
 
 m_list = [d1, d2,d3, d4, d5, d6]
@@ -83,12 +81,11 @@ if ready:
     for drone in drone_list:
         drone.dt = 1 / FREQUENCY
     run = True
-
     time.sleep(2)
 
     avoid.obstaclesMaps([-20.0,-20.0], [20.0, 20.0], 3) # plot için, cppstar için avoid objesinde veriliyo mapin boyutu
     plan.formation.initFormation()
-    avoid.Point_karma(k_fp_list, [plan.formation.virtual_lead_pos[0], plan.formation.virtual_lead_pos[1], 0, 0]) #self.start_points_drone u buluyo, x,y,z li. z si fp listteki z
+    avoid.Point_karma(k_fp_list, [plan.formation.virtual_lead_pos[0], plan.formation.virtual_lead_pos[1], 0, 0]) # self.start_points_drone u buluyo, x,y,z li. z si fp listteki z
     avoid.assignment_karma() # start_point drone güncellendi
     avoid.pathDrawProcess()
     avoid.debugPrint([], [], [], 3)
