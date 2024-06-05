@@ -9,7 +9,7 @@ from swarm import formation
 from swarm import zumo
 # from zumo import Zumo
 import rospy
-from build import cppstar
+from build import cppstar # c++ a* dan path ler hesaplanacak
 from swarm import sim_camera_V2 as g # yangın koordinatlarının döndürüldüğü kod
 import math
 
