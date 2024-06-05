@@ -31,7 +31,7 @@ for drone in drone_list:
 k_fp_list = [[0.25, 0, 0], [-0.25,0, 0]]
 k_fp_list = [[0,1, 0], [0.865,0.5, 0],[0.865,-0.5,0],[0,-1,0],[-0.865,-0.5,0],[-0.865,0.5,0]]
 
-
+# kalk - formasyon değiştir - path bul ve ata - vardıktan sonra bekle ve in
 d1 = lambda: plan.takeOff(0.5, 2)
 d2 = lambda: plan.changeFormation(k_fp_list)
 d3 = lambda: avoid.pathAssigment()
