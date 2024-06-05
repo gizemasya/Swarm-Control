@@ -10,7 +10,7 @@ from swarm import zumo
 # from zumo import Zumo
 import rospy
 from build import cppstar
-from swarm import sim_camera_V2 as g
+from swarm import sim_camera_V2 as g # yangın koordinatlarının döndürüldüğü kod
 import math
 
 
