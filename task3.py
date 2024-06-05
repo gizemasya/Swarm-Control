@@ -97,20 +97,11 @@ if ready:
 
 
     while not rospy.is_shutdown() and run:
-        """
-        b.currentDronePosLog()
-        b.virtualPosLog()
-        b.assignedFpLog()
-        print(len(plan.drone_list))"""
         x = datetime.datetime.now()
-        #plan.swarm_control()
-        run = plan.preceed(m_list)
-        #print("listedeki iha sayısı", len(plan.drone_list))
-
-
-        #print("orta nokta: ", plan.formation.virtual_lead_pos)
+        run = plan.preceed(m_list) # görev için gereken tüm fonksiyonlar döndürülüyor 
         #r.sleep()
         y = datetime.datetime.now()
+        
         dif = (1/FREQUENCY) - ((y-x).total_seconds())
         if (dif>0):
             time.sleep(dif)
