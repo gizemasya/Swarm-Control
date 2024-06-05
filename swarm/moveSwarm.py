@@ -11,7 +11,6 @@ from swarm import zumo
 import rospy
 from build import cppstar
 from swarm import sim_camera_V2 as g
-from swarm import RVO as rvo
 import math
 
 
